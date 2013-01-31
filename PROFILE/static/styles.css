@@ -1,0 +1,73 @@
+/*
+///////////////////////
+
+Styling file. 
+by http://Kartoshka.tel 
+
+///////////////////////
+*/
+
+*   { 
+    font-family: Arial, Verdana, Tahoma, sans-serif;
+    font-size: 13px; 
+    font-style: normal;
+    }
+@font-face 
+    {
+    font-family: 'CSPro';
+    src: url('http://www.ukrpromalp.com.ua/wp-content/themes/amplify/fonts/cspro/cspro-7i-blackitalic.eot');
+    src: url('http://www.ukrpromalp.com.ua/wp-content/themes/amplify/fonts/cspro/cspro-7i-blackitalic.eot?#iefix') format('embedded-opentype'),
+    url('http://www.ukrpromalp.com.ua/wp-content/themes/amplify/fonts/cspro/cspro-7i-blackitalic.woff') format('woff'),
+    url('http://www.ukrpromalp.com.ua/wp-content/themes/amplify/fonts/cspro/cspro-7i-blackitalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    /* Black Italic */
+    }
+
+body {
+    background: #245E5F url(http://mw2.wsj.net/MW5/content/images/backgrounds/background2.png) repeat-x top left; 
+    background-position: 0 -40px; }
+
+div.box {
+    width: 950px;
+    padding: 15px;
+    margin: 5px auto;
+    border: 1px dotted #FFF;
+    background-color: #EEE;
+    border-radius: 6px;
+    box-shadow: 1px 1px 10px #BBB;
+    }
+
+div#container { 
+    margin: 100px auto 0; width: 1000px; border: 0; padding: 20px; background-color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 12px; font-family: Arial, sans-serif; color: #000; }
+
+div.clearing { 
+    margin: 0 0 15px; width: auto;}
+/*
+div#data_display {
+    border: 0; width: 95%; margin: 0 auto; text-align: center; padding: 10px; }
+*/
+
+h4
+    {
+    color: #d44b34;
+    padding: 15px 0 5px;
+    margin: 0;
+
+    font-size: 40px;
+    line-height: 0.8em;
+    font-style: italic;
+    font-family: 'CSPro';
+    }
+p { color: #444; margin: 0; }
+.country { color: #888; margin-bottom: 5px; }
+.date_of_birth { color: #AAA; font-style: italic; }
+.biography { line-height: 1.4em; }
+
+A:link { text-decoration: none; color: #AAA; } 
+A:visited { text-decoration: none; color: #CCC; } 
+A:hover { text-decoration: none; color: #666; } 

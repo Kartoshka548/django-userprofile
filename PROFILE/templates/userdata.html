@@ -1,9 +1,23 @@
-{% for profile in arpaso_profiles %}
+{% extends "base.html" %}            
+    {% block content %}
 
-    <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
-    <p>{{ profile.date_of_birth }}</p>
-    <p>{{ profile.get_country_display }}</p>
-    <p>{{ profile.biography }}</p>
-    <p>{{ profile.contacts }}</p>
+        {% for profile in arpaso_profiles %}
+        <div class="box">
+            <h4>{{ profile.first_name }} {{ profile.last_name }}</h4>
+            {% if profile.date_of_birth %}
+                <p class="date_of_birth">Date of birth: {{ profile.date_of_birth }}</p>
+            {% endif %}
+            {% if profile.country %}
+                <p class="country">Origin: {{ profile.get_country_display }}</p>
+            {% endif %}
+            {% if profile.biography %}
+                <p class="biography">{{ profile.biography }}</p>
+            {% endif %}
+            {% if profile.contacts %}            
+                        <p class="contacts">{{ profile.contacts }}</p>
+            {% endif %}
+        </div>
+        <div class="clearing"></div>
 
-{% endfor %}
+        {% endfor %}
+    {% endblock %}
