@@ -28,6 +28,7 @@ body {
     background: #245E5F url(http://mw2.wsj.net/MW5/content/images/backgrounds/background2.png) repeat-x top left; 
     background-position: 0 -40px; }
 
+div#login { margin: 0 auto; width: 30%; }
 div.box {
     width: 950px;
     padding: 15px;
@@ -64,10 +65,11 @@ h4
     font-family: 'CSPro';
     }
 p { color: #444; margin: 0; }
+.red { color: #d44b38; }
 .country { color: #888; margin-bottom: 5px; }
 .date_of_birth { color: #AAA; font-style: italic; }
 .biography { line-height: 1.4em; }
 
 A:link { text-decoration: none; color: #AAA; } 
-A:visited { text-decoration: none; color: #CCC; } 
+A:visited { text-decoration: none; } 
 A:hover { text-decoration: none; color: #666; } 
