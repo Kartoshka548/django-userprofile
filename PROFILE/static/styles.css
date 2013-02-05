@@ -28,7 +28,16 @@ body {
     background: #245E5F url(http://mw2.wsj.net/MW5/content/images/backgrounds/background2.png) repeat-x top left; 
     background-position: 0 -40px; }
 
-div#login { margin: 0 auto; width: 30%; }
+div#login { 
+    margin: 0 auto 20px; 
+    width: 50%; 
+    border-left: 150px solid #EFEFEF; 
+    padding-left: 10px; 
+    min-height: 45px; 
+    }
+
+div#login p { padding-top: 5px; }
+
 div.box {
     width: 950px;
     padding: 15px;
@@ -38,6 +47,32 @@ div.box {
     border-radius: 6px;
     box-shadow: 1px 1px 10px #BBB;
     }
+div#loginbox {
+    width: 950px;
+    padding: 15px;
+    margin: 5px auto;
+    border: 1px dotted #FFF;
+    background-color: #EEE;
+    border-radius: 6px;
+    box-shadow: 1px 1px 10px #BBB;
+    }
+
+div#loginbox div {
+    width: 600px;
+    padding: 15px;
+    margin: 50px auto;
+    border: 1px dotted #FFF;
+    background-color: #F5F5F5;
+    text-align: center;
+    }
+
+form { 
+    text-align: center;
+    margin: 0 auto;
+    width: 40%
+    }
+
+input[type="submit"] { margin-top: 15px;}
 
 div#container { 
     margin: 100px auto 0; width: 1000px; border: 0; padding: 20px; background-color: #fff;

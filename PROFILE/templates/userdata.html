@@ -2,7 +2,7 @@
     {% block content %}
         {% if user.is_authenticated %}
             <div id="login">
-                <p >Welcome, <span class="red">{{ user.username }}</span>. Thanks for logging in. 
+                <p >Welcome, <span class="red">{{ user.username }}</span>. Thanks for logging in.<br /> 
                     <a href="{% url logout_url %}" class="red">Log out</a></p><br/>
             </div>
             {% for profile in arpaso_profiles %}
@@ -25,7 +25,7 @@
             {% endfor %}
         {% else %}
         <div id="login">
-            <p>Welcome, dear <span class="red">Guest</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, <br />you must <a href="{% url login_url %}" class="red">log in</a> first.</p>
+            <p>Welcome, dear <span class="red">Guest</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, you must <a href="{% url login_url %}" class="red">log in</a> first.</p>
          </div>
         {% endif %}
 
