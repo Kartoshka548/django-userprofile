@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django import forms
 from django.contrib import admin
 from datetime import date
+from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
+import codecs
 
 class UserProfile(models.Model):
 
@@ -83,6 +87,53 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 admin.site.register(UserProfile, UserProfileAdmin)
 
+
+class CreateUserForm(forms.Form):
+
+    username = forms.CharField(max_length=30)
+    password = forms.CharField(max_length=30,widget=forms.PasswordInput())
+    password_verify = forms.CharField(max_length=30,widget=forms.PasswordInput(), label='Retype password')
+    email = forms.EmailField(required=False)
+    is_admin = forms.BooleanField(required=False, initial=False, label='Staff & Admin?')
+
+    rustring = "Мир тесен!".decode('utf-8')
+
+    # is_valid()  
+    def clean_username(self): # check if username does not exist
+        try:
+            User.objects.get(username=self.cleaned_data['username']) #get user from user model
+        except User.DoesNotExist: # the option we want it to be
+            return self.cleaned_data['username']
+        else:
+            # raise forms.ValidationError(mark_safe("User <strong>%s</strong> already exists. %s" % (self.cleaned_data['username'], self.rustring)))
+            if not self._errors.has_key('username'):
+                from django.forms.util import ErrorList
+                self._errors['username'] = ErrorList()
+            self._errors['username'].append(mark_safe("User <strong>%s</strong> already exists. %s" % (self.cleaned_data['username'], self.rustring)))
+
+    # is_valid()
+    def clean(self): # do passwords submitted match each other?
+        if 'password' in self.cleaned_data and 'password_verify' in self.cleaned_data:   # check if both passwords entered
+            if self.cleaned_data['password'] != self.cleaned_data['password_verify']:    # check if they match each other
+                # raise forms.ValidationError(mark_safe("Passwords do not match! У тебя что, кривые руки?"))
+                if not self._errors.has_key('password'):
+                    from django.forms.util import ErrorList
+                    self._errors['password'] = ErrorList()
+                self._errors['password'].append(mark_safe("Кривые пароли или кривые руки?"))
+            else:
+                return self.cleaned_data
+
+    # overwriting default save() method: a) creating new user and b) setting superuser and staff permissions
+    def save(self):
+        new_user=User.objects.create_user(username=self.cleaned_data['username'],
+                                        password=self.cleaned_data['password'],
+                                        email=self.cleaned_data['email'],
+                                            )
+        if self.cleaned_data['is_admin'] is True:
+            new_user.is_superuser = True
+            new_user.is_staff = True            
+
+        new_user.save()
 
 # Here for validation reasons only
 """ 

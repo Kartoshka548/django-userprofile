@@ -1,0 +1,39 @@
+{% extends "base.html" %}            
+    {% block content %}
+
+        <div class="box">
+
+            <form method='post' action='.'>
+                {% csrf_token %}
+     
+                {% if form.non_field_errors %}
+                    <div class="form_errors">
+                        {% for err in form.non_field_errors %}
+                            <div class="form_error_message">{{ err }}</div>
+                        {% endfor %}
+                    </div>  
+                {% endif %}
+     
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {# ------------------- ACTUAL FORM AMD error messages ------------------------ #}
+                {% for field in form.visible_fields %}
+                    <div {% if field.errors %}class="field_error"{% endif %}>
+                        <div class="labels">{{ field.label_tag }}</div>
+                        <div class="inputs">{{ field }}</div>
+                        {% for err in field.errors %}
+                            <div class="error_div"><span class="error_message">{{ err }}</span></div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {# ------------------- ENDOF ACTUAL FORM and error messages ------------------ #}
+
+                <input type='submit' value="Создать нового пользователя">
+            </form>
+            <div class="clearing"></div>
+
+        </div>
+
+    {% endblock %}

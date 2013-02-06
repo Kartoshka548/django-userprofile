@@ -25,7 +25,7 @@
             {% endfor %}
         {% else %}
         <div id="login">
-            <p>Welcome, dear <span class="red">Guest</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, you must <a href="{% url login_url %}" class="red">log in</a> first.</p>
+            <p>Welcome, random <span class="red">Agent</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, you must <a href="{% url login_url %}" class="red">log in</a> or register below.</p><p class="fineprint"><a href="{% url create_new_user %}" class="red">Register new user</a></p>
          </div>
         {% endif %}
 

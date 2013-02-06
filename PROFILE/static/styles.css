@@ -67,12 +67,43 @@ div#loginbox div {
     }
 
 form { 
-    text-align: center;
+    text-align: left;
     margin: 0 auto;
-    width: 40%
+    width: 600px;
     }
+form div { display: block; }
+form div div.labels { display: inline-block; margin-left: 10px; width: 100px }
+form div div.inputs { display: inline-block; margin-left: 10px; width: 200px }
+form div div.error_div { display: inline-block; margin-left: 10px; width: 250px }
 
-input[type="submit"] { margin-top: 15px;}
+input { width: 200px; }
+input[type="submit"] { margin: 15px 65px;
+position: relative;
+font-size: 12px;
+color: #FFF;
+text-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+border-top: rgba(255, 255, 255, .2) 1px solid;
+padding: 0.4em;
+text-decoration: none;
+text-align: center;
+display: inline-block;
+border-radius: 4px;
+white-space: nowrap;
+line-height: 1.6em;
+outline: none;
+overflow: visible;
+cursor: pointer;
+border: rgba(0, 0, 0, .2) 1px solid;
+border-bottom: rgba(0, 0, 0, .4) 1px solid;
+box-shadow: 0 1px 6px rgba(0,0,0,.4);
+background: -moz-linear-gradient( center top, rgba(255, 255, 255, .1) 0%, rgba(0, 0, 0, .1) 100% );
+background: -webkit-gradient( linear, center bottom, center top, from(rgba(0, 0, 0, .1)), to(rgba(255, 255, 255, .1)) );
+user-select: none;
+background-color: #e0664b;
+}
+input[type="checkbox"] { margin: 7px 0 0 -3px; }
+
+ul.errorlist li { list-style-type: none; }
 
 div#container { 
     margin: 100px auto 0; width: 1000px; border: 0; padding: 20px; background-color: #fff;
@@ -87,7 +118,7 @@ div.clearing {
 div#data_display {
     border: 0; width: 95%; margin: 0 auto; text-align: center; padding: 10px; }
 */
-
+th { text-align: right; font-weight: normal; }
 h4
     {
     color: #d44b34;
@@ -100,6 +131,7 @@ h4
     font-family: 'CSPro';
     }
 p { color: #444; margin: 0; }
+.fineprint .red { font-size: 10px; font-style: italic; font-family: Arial, sans-serif; }
 .red { color: #d44b38; }
 .country { color: #888; margin-bottom: 5px; }
 .date_of_birth { color: #AAA; font-style: italic; }
