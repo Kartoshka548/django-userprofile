@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',      # auth/auth must
     'django.contrib.messages.middleware.MessageMiddleware',
+    'PROFILE.middleware.store_queries.Store_sql_Queries_Middleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
