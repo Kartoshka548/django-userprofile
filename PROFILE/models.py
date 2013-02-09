@@ -109,7 +109,7 @@ class CreateUserForm(forms.Form):
             if not self._errors.has_key('username'):
                 from django.forms.util import ErrorList
                 self._errors['username'] = ErrorList()
-            self._errors['username'].append(mark_safe("User <strong>%s</strong> already exists. %s" % (self.cleaned_data['username'], self.rustring)))
+            self._errors['username'].append(mark_safe("<strong>%s</strong> already exists. %s" % (self.cleaned_data['username'], self.rustring)))
 
     # is_valid()
     def clean(self): # do passwords submitted match each other?
