@@ -2,15 +2,24 @@ from django.template import loader, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from PROFILE.models import UserProfile, CreateUserForm
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render_to_response
-
-def display_data(request):
-    profiles = UserProfile.objects.all()
-    a_template = loader.get_template("userdata.html")
-    a_context = RequestContext(request, { "arpaso_profiles" : profiles })
-    return HttpResponse(a_template.render(a_context))
+from django.views.generic import ListView
 
 # RequestContext was initially used for serving static css (hmm.)
+
+# class-based generic view (supposed to be faster than manual methods)
+#
+# display_data = ListView.as_view(
+#           queryset=UserProfile.objects.all(),
+#           context_object_name='arpaso_profiles',
+#           template_name='userdata.html',
+#           )
+
+# class-based view v2 - elegant!    ----- http://ccbv.co.uk/projects/Django/1.4/django.views.generic.list/ListView/ -----
+class UserProfileList(ListView):
+    model = UserProfile
+    context_object_name='arpaso_profiles'
+    template_name='userdata.html'
+
 
 def create_new_user(request):
 

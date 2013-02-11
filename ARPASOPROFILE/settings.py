@@ -121,6 +121,8 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     # for STATIC_URL (template tag) to render correctly before sending the output to browser
     'django.core.context_processors.static',
 
+    # adding django.conf.settings to template context {dictionary}
+    'PROFILE.context_processors.context_processors.Add_Settings',
 )
 
 INSTALLED_APPS = (
