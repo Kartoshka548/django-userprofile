@@ -19,6 +19,7 @@ class UserProfileList(ListView):
     model = UserProfile
     context_object_name='arpaso_profiles'
     template_name='userdata.html'
+    paginate_by = 4
 
 
 def create_new_user(request):

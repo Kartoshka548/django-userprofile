@@ -71,7 +71,7 @@ form {
     margin: 0 auto;
     width: 600px;
     }
-    
+
 form div { display: block; }
 form div div.labels { display: inline-block; margin-left: 10px; width: 100px }
 form div div.inputs { display: inline-block; margin-left: 10px; width: 200px }
@@ -110,7 +110,7 @@ input[type="checkbox"] { margin: 7px 0 0 -3px; }
 ul.errorlist li { list-style-type: none; }
 
 div#container { 
-    margin: 100px auto 0; width: 1000px; border: 0; padding: 20px; background-color: #fff;
+    margin: 100px auto 50px; width: 1000px; border: 0; padding: 20px; background-color: #fff;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -118,6 +118,8 @@ div#container {
 
 div.clearing { 
     margin: 0 0 15px; width: auto;}
+
+div #pagination { width: 200px; margin: 0 auto; text-align: center; }
 
 h4
     {

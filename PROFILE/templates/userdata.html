@@ -23,6 +23,24 @@
                 </div>
                 <div class="clearing"></div>
             {% endfor %}
+
+            {# .... pagination section .... #}
+            {% if is_paginated %}
+                <div id="pagination">
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                            <a href="/?page={{ page_obj.previous_page_number }}">PREVIOUS | </a>
+                        {% endif %}
+                        <span class="page-current">
+                            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="/?page={{ page_obj.next_page_number }}"> | NEXT PAGE</a>
+                        {% endif %}
+                    </span>
+                    <br /><br /><p class="red">{{ settings.TIME_ZONE }}</p>
+                </div>
+            {% endif %}
         {% else %}
         <div id="login">
             <p>Welcome, random <span class="red">Agent</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, you must <a href="{% url login_url %}" class="red">log in</a> or register below.</p><p class="fineprint"><a href="{% url create_new_user %}" class="red">Register new user</a></p>

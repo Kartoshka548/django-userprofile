@@ -10,4 +10,7 @@ def Add_Settings(request):
         It should never raise an exception, and if no new variables need to be added, based on the specified request, 
         it should just return an empty dictionary.
     """
-    return { 'settings' : settings }
+    #for s in dir(settings):
+    #    print s, ':', getattr(settings, s)
+
+    return {    'settings' : settings }
