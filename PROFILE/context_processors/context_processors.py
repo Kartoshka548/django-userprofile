@@ -13,4 +13,4 @@ def Add_Settings(request):
     #for s in dir(settings):
     #    print s, ':', getattr(settings, s)
 
-    return {    'settings' : settings }
+    return { 'settings' : settings }

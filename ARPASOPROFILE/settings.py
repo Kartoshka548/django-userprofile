@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'PROFILE', # can be plain 'PROFILE'
+    'south', # database (schema) migration
 )
 
 # A sample logging configuration. The only tangible logging

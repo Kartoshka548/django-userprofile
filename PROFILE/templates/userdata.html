@@ -7,7 +7,7 @@
             </div>
             {% for profile in arpaso_profiles %}
                 <div class="box">
-                    <h4>{{ profile.first_name }} {{ profile.last_name }}</h4>
+                    <a href="{{ profile.slug }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a>
                     {% if profile.date_of_birth %}
                         <p class="date_of_birth">Date of birth: {{ profile.date_of_birth }}</p>
                     {% endif %}

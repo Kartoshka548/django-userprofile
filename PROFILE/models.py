@@ -8,6 +8,8 @@ from datetime import date
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 import codecs
+from django.template.defaultfilters import slugify
+import trans # lib making cyrillic/latin match in slugs
 
 class UserProfile(models.Model):
 
@@ -28,6 +30,7 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=2, choices=COUNTRIES, default="US", verbose_name="Страна", null=True, blank=True)
     biography = models.TextField(null=True, blank=True)
     contacts = models.CharField(max_length=100, null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True) # blank submission in the admin
     date_added_to_db = models.DateField(auto_now_add=True, verbose_name="Зарегистрирован")
 
     def age(self):
@@ -55,6 +58,17 @@ class UserProfile(models.Model):
     def admin_representation(self):
         """ Identical to __unicode__ but not magic word - meaning it CAN BE ORDERED in AdminPanel, since plain __unicode__ can not """
         return "%s %s" % (self.first_name, self.last_name)
+
+    def save(self):
+        """ Overide default save as we must >>calculate<< slug field based on submitted data """
+
+        if not self.id:
+            # if user does not exist, let's create a NEW slug
+            self.slug = slugify(unicode(self.first_name + "-" + self.last_name).encode('trans'))
+
+        # Otherwise, no need to change URI even if later something changed (cool URIs don't change - SEO rules)
+        super(UserProfile, self).save()
+
 
     age.short_description = "Возраст" 
     age.admin_order_field = 'date_of_birth'
