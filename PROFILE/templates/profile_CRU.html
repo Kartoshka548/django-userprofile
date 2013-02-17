@@ -1,0 +1,62 @@
+{% extends "base.html" %}            
+    {% block content %}
+        {% if user.is_authenticated %}
+            <div id="login">
+                <p >Welcome, <span class="red">{{ user.username }}</span>. Thanks for logging in.<br /> 
+                    <a href="{% url logout_url %}" class="red">Log out</a></p><br/>
+            </div>
+                <div class="box">
+
+                    {% if object %}
+                        <h5>Update User Profile</h5>
+                    {% else %}
+                        <h1>Sorry, you are here by mistake.</h1>
+                    {% endif %}
+
+                    {% if form.has_errors %}
+                        <h2>Please correct the following error: {{ form.errors|pluralize }}:</h2>
+                    {% endif %}
+
+                    <form method="post" action=".">
+                    {% csrf_token %}
+
+                {# ------------------- ACTUAL FORM AMD error messages ------------------------ #}
+                {% for field in form.visible_fields %}
+                    <div {% if field.errors %}class="field_error"{% endif %}>
+
+                       {% if field.label == "Biography" %}
+                            <div id="biography">
+                                <div class="labels">{{ field.label_tag }}</div>
+                                <div class="inputs">{{ field }}</div>
+                            </div>
+                        {% else %}
+                            <div class="labels">{{ field.label_tag }}</div>
+                            <div class="inputs">{{ field }}</div>
+                        {% endif %}
+
+                        {% for err in field.errors %}
+                            <div class="error_div"><span class="error_message">{{ err }}</span></div>
+                        {% endfor %}
+
+                    </div>
+                {% endfor %}
+                {# ------------------- ENDOF ACTUAL FORM and error messages ------------------ #}
+
+
+<input type="submit" />
+</form>
+<!--
+This is a lifesaver when debugging!
+<p> {{ form.error_dict }} </p>
+-->
+
+                </div>
+                <div class="clearing"></div>
+
+        {% else %}
+        <div id="login">
+            <p>Welcome, random <span class="red">Agent</span>.<br /> Our data is confidential. <br /><br />To view any Arpaso.com UserData, you must <a href="{% url login_url %}" class="red">log in</a> or register below.</p><p class="fineprint"><a href="{% url create_new_user %}" class="red">Register new user</a></p>
+         </div>
+        {% endif %}
+
+    {% endblock %}

@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'^new/$', 'PROFILE.views.create_new_user', name="create_new_user"),
 
     # forward control into local app
-    url(r'^$', include('PROFILE.urls')),
+    url(r'^', include('PROFILE.urls')),
     )

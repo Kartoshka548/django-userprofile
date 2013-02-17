@@ -76,7 +76,11 @@ class Store_sql_Queries_Middleware(object):
             else:
                 logging.write("(not logged in)\n")
 
-            logging.write(connection.queries[-1]['sql']+"\n\n")
+            # forloop replaced this single line:    logging.write(connection.queries[-1]['sql']+"\n\n")
+            for query in connection.queries:
+                logging.write(query['sql']+"\n\n")
+                
+
                  
 
         return response

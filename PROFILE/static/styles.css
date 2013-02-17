@@ -66,18 +66,21 @@ div#loginbox div {
     text-align: center;
     }
 
-form { 
+div.box form { 
     text-align: left;
     margin: 0 auto;
     width: 600px;
+    border: 1px solid #EFFFFF;
+    padding: 30px;
+    background-color: F3F3f3
     }
 
 form div { display: block; }
-form div div.labels { display: inline-block; margin-left: 10px; width: 100px }
+form div div.labels { display: inline-block; margin: 5px 0 0 10px; width: 100px }
 form div div.inputs { display: inline-block; margin-left: 10px; width: 200px }
 form div div.error_div { display: inline-block; margin-left: 10px; width: 250px }
 
-input { width: 200px; }
+input { width: 250px; }
 
 input[type="submit"] { 
     margin: 15px 65px;
@@ -106,8 +109,11 @@ input[type="submit"] {
     }
 
 input[type="checkbox"] { margin: 7px 0 0 -3px; }
+textarea { width: 400px; }
 
 ul.errorlist li { list-style-type: none; }
+
+div { vertical-align: top; }
 
 div#container { 
     margin: 100px auto 50px; width: 1000px; border: 0; padding: 20px; background-color: #fff;

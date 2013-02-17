@@ -16,7 +16,8 @@ from django.views.generic import ListView
 
 # class-based view v2 - elegant!    ----- http://ccbv.co.uk/projects/Django/1.4/django.views.generic.list/ListView/ -----
 class UserProfileList(ListView):
-    model = UserProfile
+    # model = UserProfile
+    queryset=UserProfile.objects.all().order_by('first_name')
     context_object_name='arpaso_profiles'
     template_name='userdata.html'
     paginate_by = 4

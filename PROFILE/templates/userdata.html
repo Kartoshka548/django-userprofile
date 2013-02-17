@@ -7,7 +7,7 @@
             </div>
             {% for profile in arpaso_profiles %}
                 <div class="box">
-                    <a href="{{ profile.slug }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a>
+                    <a href="{{ profile.get_absolute_url }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a>
                     {% if profile.date_of_birth %}
                         <p class="date_of_birth">Date of birth: {{ profile.date_of_birth }}</p>
                     {% endif %}
@@ -39,6 +39,8 @@
                         {% endif %}
                     </span>
                     <br /><br /><p class="red">{{ settings.TIME_ZONE }}</p>
+                    <br /><p>{{ domaindata }}</a></p>
+
                 </div>
             {% endif %}
         {% else %}

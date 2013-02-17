@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django import forms
-from django.contrib import admin
-from datetime import date
-from django.contrib.auth.models import User
-from django.utils.safestring import mark_safe
-import codecs
-from django.template.defaultfilters import slugify
-import trans # lib making cyrillic/latin match in slugs
+from django import forms                            
+from django.contrib import admin                   
+from datetime import date                           # age calculation
+from django.contrib.auth.models import User         # auth
+from django.utils.safestring import mark_safe       # for html tags in error messages
+# import codecs
+from django.template.defaultfilters import slugify  # from "hello, mir" to hello-mir
+import trans                                        # lib making cyrillic/latin match in slugs
+# from django.core.urlresolvers import reverse        # get_absolute_url reverse lookup
 
 class UserProfile(models.Model):
 
@@ -30,8 +31,12 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=2, choices=COUNTRIES, default="US", verbose_name="Страна", null=True, blank=True)
     biography = models.TextField(null=True, blank=True)
     contacts = models.CharField(max_length=100, null=True, blank=True)
-    slug = models.SlugField(null=True, blank=True) # blank submission in the admin
+    slug = models.SlugField(null=True, blank=True, editable=False) # blank submission in the admin, non-editable is hidden
     date_added_to_db = models.DateField(auto_now_add=True, verbose_name="Зарегистрирован")
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ("url_edit_profile", None, { 'slug' : self.slug, })
 
     def age(self):
  
@@ -49,15 +54,19 @@ class UserProfile(models.Model):
         else:
             return today.year - self.date_of_birth.year
 
+
     class Meta:
         verbose_name = 'Arpaso.com User Profile'
+
 
     def __unicode__(self):
         return "%s %s" % (self.first_name, self.last_name)
 
+
     def admin_representation(self):
         """ Identical to __unicode__ but not magic word - meaning it CAN BE ORDERED in AdminPanel, since plain __unicode__ can not """
         return "%s %s" % (self.first_name, self.last_name)
+
 
     def save(self):
         """ Overide default save as we must >>calculate<< slug field based on submitted data """
@@ -75,6 +84,7 @@ class UserProfile(models.Model):
 
     admin_representation.short_description = "Пользователь"
     admin_representation.admin_order_field = 'first_name'
+
 
 
 class UserProfileAdmin(admin.ModelAdmin):

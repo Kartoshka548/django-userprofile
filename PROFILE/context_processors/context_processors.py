@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from django.conf import settings
+from django.contrib.sites.models import Site
 
 def Add_Settings(request):
     """Adding django.conf.settings to template context dictionary.
@@ -13,4 +14,7 @@ def Add_Settings(request):
     #for s in dir(settings):
     #    print s, ':', getattr(settings, s)
 
-    return { 'settings' : settings }
+    return { 
+            'settings' : settings, 
+            'domaindata' : Site.objects.get_current().domain, # takes info from fixture site/domain record (pk=1)
+            }

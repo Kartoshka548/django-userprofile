@@ -122,14 +122,6 @@
         }
     }, 
     {
-        "pk": "a7db855028cc52cff46bb0781c8b193b", 
-        "model": "sessions.session", 
-        "fields": {
-            "expire_date": "2013-02-25T13:10:45.228Z", 
-            "session_data": "ZTQ2OGM5OTkxOTNjMzhhMzQ0OGI3MzU3YzIxYTFjYTBhMTc3ZTVmMTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
-        }
-    }, 
-    {
         "pk": "5e342f061b95a9cde7d3562f6325674a", 
         "model": "sessions.session", 
         "fields": {
@@ -138,11 +130,19 @@
         }
     }, 
     {
+        "pk": "c44277fe2eb28454fb21c5138eb5d7a4", 
+        "model": "sessions.session", 
+        "fields": {
+            "expire_date": "2013-03-03T17:13:42.215Z", 
+            "session_data": "ZTQ2OGM5OTkxOTNjMzhhMzQ0OGI3MzU3YzIxYTFjYTBhMTc3ZTVmMTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
+        }
+    }, 
+    {
         "pk": 1, 
         "model": "sites.site", 
         "fields": {
-            "domain": "example.com", 
-            "name": "example.com"
+            "domain": "changed_in_initial_data_fixture.com", 
+            "name": "also_can_be_changed_from_admin_Sites.com"
         }
     }, 
     {
@@ -313,11 +313,11 @@
             "first_name": "Ahmad", 
             "last_name": "Juarez", 
             "date_added_to_db": "2013-01-22", 
-            "contacts": "", 
+            "contacts": "o contacts on this page.", 
             "country": "NL", 
             "date_of_birth": "1922-12-04", 
             "slug": "ahmad-juarez", 
-            "biography": ""
+            "biography": "Ahmad is a bearded dj."
         }
     }, 
     {
@@ -415,7 +415,7 @@
             "country": "NL", 
             "date_of_birth": "1977-03-21", 
             "slug": "andrew-burgess", 
-            "biography": "envato presenter and professional git committer"
+            "biography": "envato presenter and professional git committer and good person in general"
         }
     }, 
     {
@@ -712,7 +712,7 @@
             "is_active": true, 
             "is_superuser": true, 
             "is_staff": true, 
-            "last_login": "2013-02-04T23:03:03.926Z", 
+            "last_login": "2013-02-17T17:13:42.208Z", 
             "groups": [], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$10000$TOSfvFmanYTV$a/J36xr7Q3x+UN47VafpBSw2iTZBGvhl9rFjzCC2A+E=", 
