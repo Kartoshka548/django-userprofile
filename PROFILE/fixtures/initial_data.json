@@ -130,10 +130,10 @@
         }
     }, 
     {
-        "pk": "c44277fe2eb28454fb21c5138eb5d7a4", 
+        "pk": "42445cc4e9eb4b8d08b84a0feb0d279f", 
         "model": "sessions.session", 
         "fields": {
-            "expire_date": "2013-03-03T17:13:42.215Z", 
+            "expire_date": "2013-03-04T12:31:46.356Z", 
             "session_data": "ZTQ2OGM5OTkxOTNjMzhhMzQ0OGI3MzU3YzIxYTFjYTBhMTc3ZTVmMTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
         }
     }, 
@@ -433,6 +433,20 @@
         }
     }, 
     {
+        "pk": 17, 
+        "model": "PROFILE.userprofile", 
+        "fields": {
+            "first_name": "Mirit ", 
+            "last_name": "Wissotzky", 
+            "date_added_to_db": "2013-02-18", 
+            "contacts": "via facebook!", 
+            "country": "NL", 
+            "date_of_birth": "1977-05-18", 
+            "slug": "mirit-wissotzky", 
+            "biography": "Dating italian friend.\r\nMaking out with him."
+        }
+    }, 
+    {
         "pk": 22, 
         "model": "auth.permission", 
         "fields": {
@@ -712,7 +726,7 @@
             "is_active": true, 
             "is_superuser": true, 
             "is_staff": true, 
-            "last_login": "2013-02-17T17:13:42.208Z", 
+            "last_login": "2013-02-18T12:31:46.347Z", 
             "groups": [], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$10000$TOSfvFmanYTV$a/J36xr7Q3x+UN47VafpBSw2iTZBGvhl9rFjzCC2A+E=", 

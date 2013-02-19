@@ -5,6 +5,9 @@
                 <p >Welcome, <span class="red">{{ user.username }}</span>. Thanks for logging in.<br /> 
                     <a href="{% url logout_url %}" class="red">Log out</a></p><br/>
             </div>
+
+            <a href="{% url url_create_profile %}" class="createnew"> Create new Arpaso Profile</a>
+
             {% for profile in arpaso_profiles %}
                 <div class="box">
                     <a href="{{ profile.get_absolute_url }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a>

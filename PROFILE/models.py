@@ -7,10 +7,9 @@ from django.contrib import admin
 from datetime import date                           # age calculation
 from django.contrib.auth.models import User         # auth
 from django.utils.safestring import mark_safe       # for html tags in error messages
-# import codecs
 from django.template.defaultfilters import slugify  # from "hello, mir" to hello-mir
 import trans                                        # lib making cyrillic/latin match in slugs
-# from django.core.urlresolvers import reverse        # get_absolute_url reverse lookup
+from django.core.urlresolvers import reverse        # get_absolute_url reverse lookup - richer and faster than permalink
 
 class UserProfile(models.Model):
 
@@ -27,16 +26,21 @@ class UserProfile(models.Model):
 
     first_name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
-    date_of_birth = models.DateField(default="1980-02-14", auto_now=False, auto_now_add=False, null=True, blank=True)
+    date_of_birth = models.DateField(default="Date in format YYYY-MM-DD", auto_now=False, auto_now_add=False, null=True, blank=True)
     country = models.CharField(max_length=2, choices=COUNTRIES, default="US", verbose_name="Страна", null=True, blank=True)
     biography = models.TextField(null=True, blank=True)
     contacts = models.CharField(max_length=100, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True, editable=False) # blank submission in the admin, non-editable is hidden
     date_added_to_db = models.DateField(auto_now_add=True, verbose_name="Зарегистрирован")
 
-    @models.permalink
+    # @models.permalink
+    # def get_absolute_url(self):
+    #    return ("url_edit_profile", None, { 'slug' : self.slug, })
+
     def get_absolute_url(self):
-        return ("url_edit_profile", None, { 'slug' : self.slug, })
+        return reverse("url_edit_profile", args=(self.slug,))
+        # equal to reverse("url_edit_profile", kwargs={ 'slug' : self.slug })
+
 
     def age(self):
  

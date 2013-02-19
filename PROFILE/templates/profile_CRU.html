@@ -7,11 +7,13 @@
             </div>
                 <div class="box">
 
-                    {% if object %}
+                    {% if context %}
+                        <h5>Review User Profile</h5>
+                    {% else %}{% if object %}
                         <h5>Update User Profile</h5>
                     {% else %}
-                        <h1>Sorry, you are here by mistake.</h1>
-                    {% endif %}
+                        <h1>Create new User Profile</h1>
+                    {% endif %}{% endif %}
 
                     {% if form.has_errors %}
                         <h2>Please correct the following error: {{ form.errors|pluralize }}:</h2>
@@ -20,35 +22,41 @@
                     <form method="post" action=".">
                     {% csrf_token %}
 
-                {# ------------------- ACTUAL FORM AMD error messages ------------------------ #}
-                {% for field in form.visible_fields %}
-                    <div {% if field.errors %}class="field_error"{% endif %}>
+                {% if context %}
+                   {% for title, content in context.items %}     
+                   <p><strong>{{ title }}</strong> {{ content }}</p>
+                    {% endfor %}
+                {% else %}
+                    {# ------------------- ACTUAL FORM AMD error messages ------------------------ #}
+                    {% for field in form.visible_fields %}
+                        <div {% if field.errors %}class="field_error"{% endif %}>
 
-                       {% if field.label == "Biography" %}
-                            <div id="biography">
+                           {% if field.label == "Biography" %}
+                                <div id="biography">
+                                    <div class="labels">{{ field.label_tag }}</div>
+                                    <div class="inputs">{{ field }}</div>
+                                </div>
+                            {% else %}
                                 <div class="labels">{{ field.label_tag }}</div>
                                 <div class="inputs">{{ field }}</div>
-                            </div>
-                        {% else %}
-                            <div class="labels">{{ field.label_tag }}</div>
-                            <div class="inputs">{{ field }}</div>
-                        {% endif %}
+                            {% endif %}
 
-                        {% for err in field.errors %}
-                            <div class="error_div"><span class="error_message">{{ err }}</span></div>
-                        {% endfor %}
+                            {% for err in field.errors %}
+                                <div class="error_div"><span class="error_message">{{ err }}</span></div>
+                            {% endfor %}
 
-                    </div>
-                {% endfor %}
-                {# ------------------- ENDOF ACTUAL FORM and error messages ------------------ #}
+                        </div>
+                    {% endfor %}
+                    {# ------------------- ENDOF ACTUAL FORM and error messages ------------------ #}
 
 
-<input type="submit" />
-</form>
-<!--
-This is a lifesaver when debugging!
-<p> {{ form.error_dict }} </p>
--->
+                        <input type="submit" />
+                        </form>
+                {% endif %}
+                    <!--
+                    This is a lifesaver when debugging!
+                    <p> {{ form.error_dict }} </p>
+                    -->
 
                 </div>
                 <div class="clearing"></div>

@@ -82,8 +82,8 @@ form div div.error_div { display: inline-block; margin-left: 10px; width: 250px 
 
 input { width: 250px; }
 
-input[type="submit"] { 
-    margin: 15px 65px;
+.createnew, input[type="submit"] { 
+    margin: 15px 9px;
     position: relative;
     font-size: 12px;
     color: #FFF;
@@ -108,6 +108,8 @@ input[type="submit"] {
     background-color: #e0664b;
     }
 
+.createnew:hover, input[type="submit"]:hover { text-shadow: 0px 3px 10px #000000; }
+
 input[type="checkbox"] { margin: 7px 0 0 -3px; }
 textarea { width: 400px; }
 
@@ -129,7 +131,7 @@ div #pagination { width: 200px; margin: 0 auto; text-align: center; }
 
 h4
     {
-    color: #d44b34;
+    color: #e0664b;
     padding: 15px 0 5px;
     margin: 0;
 
@@ -141,11 +143,12 @@ h4
 
 p { color: #444; margin: 0; }
 .fineprint .red { font-size: 10px; font-style: italic; font-family: Arial, sans-serif; }
-.red { color: #d44b38; }
+.red { color: #e0664b; }
 .country { color: #888; margin-bottom: 5px; }
 .date_of_birth { color: #AAA; font-style: italic; }
 .biography { line-height: 1.4em; }
 
 A:link { text-decoration: none; color: #AAA; } 
 A:visited { text-decoration: none; } 
-A:hover { text-decoration: none; color: #666; } 
+A:hover { text-decoration: none; }
+
