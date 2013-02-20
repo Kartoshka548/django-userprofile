@@ -7,6 +7,7 @@
             </div>
                 <div class="box">
 
+                    <a href="{% url url_display_data %}" class="cru">&laquo; Back to Profile list</a>
                     {% if context %}
                         <h5>Review User Profile</h5>
                     {% else %}{% if object %}
@@ -14,7 +15,6 @@
                     {% else %}
                         <h1>Create new User Profile</h1>
                     {% endif %}{% endif %}
-
                     {% if form.has_errors %}
                         <h2>Please correct the following error: {{ form.errors|pluralize }}:</h2>
                     {% endif %}
@@ -23,9 +23,13 @@
                     {% csrf_token %}
 
                 {% if context %}
-                   {% for title, content in context.items %}     
-                   <p><strong>{{ title }}</strong> {{ content }}</p>
+                    {# this section is used when 'review' engaged. #}
+
+                    {% load key_with_space %}
+                    {% for title, content in context.items %}     
+                       <p><span class="oneline"><strong>{{ title|strip_underscores|capfirst }}</strong></span> {{ content }}</p>
                     {% endfor %}
+
                 {% else %}
                     {# ------------------- ACTUAL FORM AMD error messages ------------------------ #}
                     {% for field in form.visible_fields %}

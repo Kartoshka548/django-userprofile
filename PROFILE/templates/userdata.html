@@ -10,7 +10,8 @@
 
             {% for profile in arpaso_profiles %}
                 <div class="box">
-                    <a href="{{ profile.get_absolute_url }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a>
+                    <a href="{% url url_review_profile profile.slug %}">Review full profile</a>
+                    <a href="{{ profile.get_absolute_url }}"><h4>{{ profile.first_name }} {{ profile.last_name }}</h4></a> 
                     {% if profile.date_of_birth %}
                         <p class="date_of_birth">Date of birth: {{ profile.date_of_birth }}</p>
                     {% endif %}

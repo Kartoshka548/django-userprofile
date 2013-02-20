@@ -162,22 +162,3 @@ class CreateUserForm(forms.Form):
             new_user.is_staff = True            
 
         new_user.save()
-
-# Here for validation reasons only
-""" 
->>>./manage.py sqlall PROFILE
-
-BEGIN;
-CREATE TABLE "PROFILE_userprofile" (
-    "id" integer NOT NULL PRIMARY KEY,
-    "first_name" varchar(30) NOT NULL,
-    "last_name" varchar(30) NOT NULL,
-    "date_of_birth" date,
-    "country" varchar(2),
-    "biography" text,
-    "contacts" varchar(100),
-    "date_added_to_db" date NOT NULL
-)
-;
-COMMIT;
-"""

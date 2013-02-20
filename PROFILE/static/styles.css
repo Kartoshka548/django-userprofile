@@ -148,6 +148,11 @@ p { color: #444; margin: 0; }
 .date_of_birth { color: #AAA; font-style: italic; }
 .biography { line-height: 1.4em; }
 
+span.oneline { display: inline-block; width: 100px; line-height: 1.5em; }
+
+.cru { display: inline-block; margin-left: 144px; }
+h5 { display: inline-block; margin: 10px 15px 40px; }
+
 A:link { text-decoration: none; color: #AAA; } 
 A:visited { text-decoration: none; } 
 A:hover { text-decoration: none; }

@@ -3,26 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from PROFILE.models import UserProfile, CreateUserForm
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView, UpdateView, CreateView, DetailView
+from django.utils.datastructures import SortedDict # for unquestionable control of entry order in template
 
-# this one is twisted use: in order to keep in-line with single-template CRUD template. 
+# this one is twisted use: in order to keep in-line with single-template CRU(-D) template. 
 # It returns fields:values dictionary. 
 from django.forms.models import model_to_dict  
 
-# RequestContext was initially used for serving static css (hmm.)
-
-# class-based generic view (supposed to be faster than manual methods)
-#
-# display_data = ListView.as_view(
-#           queryset=UserProfile.objects.all(),
-#           context_object_name='arpaso_profiles',
-#           template_name='userdata.html',
-#           )
-
-# class-based view v2 - elegant!    ----- http://ccbv.co.uk/projects/Django/1.4/django.views.generic.list/ListView/ -----
 class UserProfileList(ListView):
     """List all users on paginated list"""
-    def __init__(self):
-        super(UserProfileList, self).__init__()
 
     # model = UserProfile
     queryset = UserProfile.objects.all().order_by('first_name')
@@ -32,50 +20,59 @@ class UserProfileList(ListView):
 
 
 class UserProfileCreate(CreateView):
-    """Ceate New UserProfile in a form"""
-    def __init__(self):
-        super(UserProfileCreate, self).__init__()
+    """Ceate New UserProfile - in a form"""
 
-    model = UserProfile 
+    model = UserProfile
     template_name = 'profile_CRU.html'
     success_url = "/"   
         
 
 class UserProfileUpdate(UpdateView):
-    """Update specific user's information in database"""
-    def __init__(self):
-        super(UserProfileUpdate, self).__init__()
+    """Update specific user's information in database - in a form"""
 
     model = UserProfile 
     template_name = 'profile_CRU.html'
     success_url = "/" 
 
-'''
-def UserProfileReview(request, slug):
-    """Absolutely equal to Update_class, above"""
-
-    from django.shortcuts import render, get_object_or_404
-    class UserProfileForm(ModelForm):
-        class Meta:
-            model = UserProfile
-
-    model = get_object_or_404(UserProfile, slug=slug)
-    form = UserProfileForm(instance=model)
-
-    return render(request, 'profile_CRU.html', { 'form': form })
-'''
 
 class UserProfileReview(DetailView):
     """Review UserProfile you just edited"""
-    def __init__(self):
-        super(UserProfileReview, self).__init__()
 
     model = UserProfile 
     template_name = 'profile_CRU.html'
+    context_object_name = 'context'
 
+    # without context, we end up using only entries, no titles, NO DICT but flat list of fields.
     def get_context_data(self, **kwargs):
-        userinfo = [model_to_dict(value, exclude=['slug', 'date_added_to_db', 'id']) for value in kwargs.values()][0]
-        return { 'context' : userinfo }
+        the_profile = kwargs
+        userinfo = [model_to_dict(value, exclude=['id', 'slug', 'date_added_to_db']) for value in the_profile.values()][0]
+
+        for key, info in userinfo.items():
+            # if there's no data associated (value empty), do not display empty string.
+            if not userinfo[key]:
+                userinfo.__delitem__(key)
+
+        # Keys cannot be changed. Add a new key with the modified value then remove the old one, or create a new dict with a dict comprehension or the like.
+        # just becuase django is NOT using sorted dict when handling models... and we want as less logic as possible in template
+        # it must go ordered this way: 1.first 2.last 3.birthdate 4.country 6.contacts 5.bio 
+        sorted_fields = SortedDict({
+            'first_name' : userinfo['first_name'],
+            'last_name' : userinfo['last_name'],
+        })
+        
+        # lot of calculations(going over and over keys) here - for large dbs that's ineffective
+        if 'date_of_birth' in userinfo.keys():
+            sorted_fields.__setitem__("birth_date", userinfo['date_of_birth'])
+        if 'country' in userinfo.keys():
+            sorted_fields.__setitem__("country", the_profile['object'].get_country_display()) # did not work in template as this is not the object but dictionary we iterate on 
+        if 'contacts' in userinfo.keys():
+            sorted_fields.__setitem__("contacts", userinfo['contacts'])
+        if 'biography' in userinfo.keys():
+            sorted_fields.__setitem__("biography", userinfo['biography'])
+
+        # sorted_fields.keyOrder.reverse() - here we might have an answer for upcoming task, let's inspect that later 
+        return { 'context' : sorted_fields }
+
 
 
 # old-style views

@@ -3,6 +3,15 @@
 from django.db import connection
 from django.http import HttpResponse
 
+
+
+class CensorWare(object):
+    def process_response(self, request, response):
+        response.content = response.content.replace("changed_in_initial_data_fixture.com", "localhost")
+        return response
+
+
+
 class CountRequests(object):
     counter = 0
 

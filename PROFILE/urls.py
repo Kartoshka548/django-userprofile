@@ -7,14 +7,13 @@ urlpatterns = patterns('',
     url(r'^$', UserProfileList.as_view(), name='url_display_data'), 
 
     # create record
-    url(r'^create/$', UserProfileCreate.as_view(), name="url_create_profile"),
+    url(r'^create(/)?$', UserProfileCreate.as_view(), name="url_create_profile"),
 
     # update record
-    url(r'^(?P<slug>[\w\-]+)/edit/$', UserProfileUpdate.as_view(), name="url_edit_profile"),
+    url(r'^(?P<slug>[\w\-]+)/edit(/)?$', UserProfileUpdate.as_view(), name="url_edit_profile"),
 
     # review record
-    url(r'^(?P<slug>[\w\-]+)/review/$', UserProfileReview.as_view(), name="url_review_profile"),
-    #url(r'^(?P<slug>[\w\-]+)/review/$', 'PROFILE.views.UserProfileReview', name="url_review_profile"),
+    url(r'^(?P<slug>[\w\-]+)/review(/)?$', UserProfileReview.as_view(), name="url_review_profile"),
     )
 
 
